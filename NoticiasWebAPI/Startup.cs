@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NoticiasWebAPI.Services;
 
 namespace NoticiasWebAPI
 {
@@ -31,7 +33,8 @@ namespace NoticiasWebAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddDbContext<NoticiasDBContext>(opciones => opciones.UseSqlServer("Data Source=localhost/sqlserver;Initial Catalog=Noticias;Persist Security Info=True;User ID=sa;Password=Abraxa$11"));
+            services.AddTransient<NoticiaServices, NoticiaServices>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -52,12 +55,7 @@ namespace NoticiasWebAPI
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

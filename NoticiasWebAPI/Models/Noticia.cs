@@ -11,6 +11,7 @@ namespace NoticiasWebAPI.Models
         public string Descripcion { get; set; }
         public string Contenido { get; set; }
         public DateTime Fecha { get; set; }
+        public int AutorID { get; set; }
         public Autor Autor { get; set; }
 
 
@@ -23,7 +24,8 @@ namespace NoticiasWebAPI.Models
                 ebNoticia.Property(x => x.Descripcion).HasColumnName("Descripcion").HasMaxLength(100);
                 ebNoticia.Property(x => x.Contenido).HasColumnName("Contenido").HasMaxLength(int.MaxValue);
                 ebNoticia.Property(x => x.Fecha).HasColumnName("Fecha").HasColumnType("Datetime");
-                ebNoticia.HasOne(x => x.Autor).WithMany(x => x.Noticias).HasForeignKey(x => x.Autor);
+                ebNoticia.Property(x => x.AutorID).HasColumnName("AutorID").HasColumnType("int");
+                ebNoticia.HasOne(x => x.Autor);
             }
         }
     }

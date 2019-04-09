@@ -10,7 +10,7 @@ namespace NoticiasWebAPI.Models
         public int AutorID { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public List<Noticia> Noticias { get; set; }
+        //public List<Noticia> Noticias { get; set; }
 
 
         public class Map
