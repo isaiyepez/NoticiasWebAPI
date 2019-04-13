@@ -33,7 +33,9 @@ namespace NoticiasWebAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<NoticiasDBContext>(opciones => opciones.UseSqlServer("Data Source=localhost/sqlserver;Initial Catalog=Noticias;Persist Security Info=True;User ID=sa;Password=Abraxa$11"));
+            //services.AddDbContext<NoticiasDBContext>(opciones => opciones.UseSqlServer("Data Source=localhost/sqlserver;Initial Catalog=Noticias;Persist Security Info=True;User ID=sa;Password=Abraxa$11"));
+            services.AddDbContext<NoticiasDBContext>(opciones => opciones.UseSqlServer("Data Source= localhost;Initial Catalog= Noticias;Trusted_Connection=True"));
+
             services.AddTransient<NoticiaServices, NoticiaServices>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

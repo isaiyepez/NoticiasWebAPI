@@ -52,15 +52,31 @@ namespace NoticiasWebAPI.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [Route("Editar")]
+        [HttpPut]
+        public IActionResult EditNoticia([FromBody] Noticia updateNoticia)
         {
+            if (noticiaServices.Agregar(updateNoticia))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Route("Eliminar/{id}")]
+        public IActionResult DeleteNoticia(int id)
         {
+            if(noticiaServices.Eliminar(id))
+            {
+                return Ok();
+            }
+            else {
+                return BadRequest();
+            }
         }
     }
 }
