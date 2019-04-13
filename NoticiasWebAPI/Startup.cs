@@ -38,6 +38,11 @@ namespace NoticiasWebAPI
 
             services.AddTransient<NoticiaServices, NoticiaServices>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddCors(opciones =>
+            {
+                opciones.AddPolicy("PermitirTodo", acceso => acceso.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +57,7 @@ namespace NoticiasWebAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseCors("PermitirTodo");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
