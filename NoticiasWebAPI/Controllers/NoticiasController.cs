@@ -78,5 +78,12 @@ namespace NoticiasWebAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [Route("VerAutores")]
+        public IActionResult GetAuthors()
+        {
+            List<Models.Autor> result = noticiaServices.VerListadoAutores();
+            return Ok(result);
+        }
     }
 }

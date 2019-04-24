@@ -69,5 +69,19 @@ namespace NoticiasWebAPI.Services
                 return false;
             }
         }
+
+        public List<Autor> VerListadoAutores()
+        {
+            try
+            {
+                var autores = noticiasDB.Autor.ToList();
+                return autores;
+            }
+            catch (Exception ex)
+            {
+                return new List<Autor>();
+            }
+
+        }
     }
 }
